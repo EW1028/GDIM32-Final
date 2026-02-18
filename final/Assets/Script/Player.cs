@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    [SerializeField] Transform _playerTransform;
 
     SpriteRenderer sr;
     void Start()
@@ -17,8 +18,8 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0) * moveSpeed * Time.deltaTime;
-        
+        Vector3 moement = new Vector3(horizontalInput, verticalInput, 0) * moveSpeed * Time.deltaTime;
+        _playerTransform.position += moement;
     }
     
 }
