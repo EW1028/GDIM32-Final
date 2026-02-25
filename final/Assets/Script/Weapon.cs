@@ -25,15 +25,15 @@ public class Weapon : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         _timer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0) && _timer >= _fireRate)
         {
             FireWeapon();
-            //_HandAnimator.SetBool("Isshooting",true);
             _timer = 0;
+            //_HandAnimator.SetTrigger("isFIre");
         }
     }
 
