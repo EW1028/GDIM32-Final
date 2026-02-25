@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    public event Action<int> OnScoreChanged;
-    public event Action OnGameOver;
-    public event Action OnPointScored;
+    public event Action OnShoot;
+    public event Action OnTalkStart;
+    public event Action OnTalkEnd;
 
-    public bool IsPlaying { get; private set; }
+    public event Action<Enemy> OnEnemyHit;
+    public event Action<Enemy> OnEnemyDead;
+
+    public event Action<int> OnScoreChanged;
+
+    public bool IsPlaying { get; private set; } = true;
     private int score = 0;
 
     private void Awake()
@@ -23,40 +29,43 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void Shoot()
     {
-        StartGame();
+        if(!IsPlaying)
+            return;
+        OnShoot?.Invoke();
     }
 
-    public void StartGame()
+    public void TalkStart()
+    {
+        IsPlaying = false;
+        OnTalkStart?.Invoke();
+    }
+
+    public void TalkEnd()
     {
         IsPlaying = true;
-        score = 0;
-        OnScoreChanged?.Invoke(score);
+        OnTalkEnd?.Invoke();
     }
 
-    public void AddPoint()
+    public void EnemyHit(Enemy enemy)
     {
         if (!IsPlaying)
             return;
-        score++;
-        OnScoreChanged?.Invoke(score);
-        OnPointScored?.Invoke();
+        OnEnemyHit?.Invoke(enemy);
     }
-
-    public void GameOver()
+    public void EnemyDead(Enemy enemy)
     {
         if (!IsPlaying)
             return;
-        IsPlaying = false;
-        OnGameOver?.Invoke();
+        OnEnemyDead?.Invoke(enemy);
+        AddScore(1);
+    }
 
-        Invoke(nameof(RestartGame), 1f);
-    }
-    private void RestartGame()
+    public void AddScore(int amount)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        score += amount;
+        OnScoreChanged?.Invoke(score);
     }
+
 }
-

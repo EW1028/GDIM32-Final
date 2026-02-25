@@ -11,6 +11,7 @@ public class SFX : MonoBehaviour
    public AudioClip hitSound;
    public AudioClip shootSound;
    public AudioClip talkSound;
+   public AudioClip enemyDeadSound;
    
 
    private AudioSource audioSource;
@@ -21,29 +22,61 @@ public class SFX : MonoBehaviour
 
    private void OnEnable()
    {
-    Debug.Log("OnEnable Active");
     if (GameController.Instance == null)
     return;
+     GameController.Instance.OnShoot += HandleShoot;
+     GameController.Instance.OnTalkStart  += HandleTalkStart;
+     GameController.Instance.OnEnemyHit += HandleEnemyHit;
+     GameController.Instance.OnEnemyDead += HandleEnemyDead;
+     GameController.Instance.OnScoreChanged += HandlePointScored;
    }
 
    private void OnDisable()
    {
     if (GameController.Instance == null)
     return;
+        GameController.Instance.OnShoot -= HandleShoot;
+        GameController.Instance.OnTalkStart  -= HandleTalkStart;
+        GameController.Instance.OnEnemyHit -= HandleEnemyHit;
+        GameController.Instance.OnEnemyDead -= HandleEnemyDead;
+        GameController.Instance.OnScoreChanged -= HandlePointScored;
    }
 
-   void HandlePlayerFlap()
+   private void HandleShoot()
    {
-    Debug.Log("handle player flap method");
-    audioSource.PlayOneShot(backgroundmorningSoundSound);
+    if (shootSound != null)
+    audioSource.PlayOneShot(shootSound);
    }
-    void HandlePointScored()
+   private void HandleTalkStart()
+   {
+    if (talkSound != null)
+    audioSource.PlayOneShot(talkSound);
+   }
+   
+   private void HandleEnemyHit(Enemy enemy)
+   {
+    if (hitSound != null)
+    audioSource.PlayOneShot(hitSound);
+   }
+    private void HandleEnemyDead(Enemy enemy)
+   {
+    if (enemyDeadSound != null)
+    audioSource.PlayOneShot(enemyDeadSound);
+   }
+    private void HandlePointScored(int newScore)
     {
-     audioSource.PlayOneShot(scoreSound);
+    if (scoreSound != null)
+    audioSource.PlayOneShot(scoreSound);
     }
-    void HandlePlayerHit()
+
+    public void PlayBackgroundMorning()
     {
-     audioSource.PlayOneShot(hitSound);
+        if (backgroundmorningSound != null)
+        {
+            audioSource.clip = backgroundmorningSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
     }
 }
 
