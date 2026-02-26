@@ -24,4 +24,6 @@ Put your individual final Devlog here.
 Cite any open-source assets here. Put them in a LIST, and use correctly formatted LINKS.
 
 [3D model of hand and gun & animation & bullet 3D model](https://assetstore.unity.com/packages/3d/props/weapons/glassofcoins-low-poly-fps-pack-196540)
+[BGM morning](https://www.youtube.com/watch?v=KIh8PEwFCtg)
+[Shooting & reloading SFX](https://assetstore.unity.com/packages/templates/systems/multiplayer-fps-template-259143)
 
