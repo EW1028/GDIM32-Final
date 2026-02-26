@@ -21,6 +21,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _maxBullets = 30f;
     [SerializeField] private Object _BulletsPrefab;
     [SerializeField] private float _BulletSpeed;
+    [SerializeField] private TMP_Text _Magnumber;
+    [SerializeField] private TMP_Text _TotalMagNumber;
+    [SerializeField] private float _reloadTime = 2f;
+    [SerializeField] private float _reloadTimer;
+
 
 
 
@@ -40,8 +45,11 @@ public class Weapon : MonoBehaviour
     {
        
             FireWeapon();
-            
-       
+        Reload();
+
+        _Magnumber.text = _currentBullets.ToString();
+            _TotalMagNumber.text = _maxBullets.ToString();
+
     }
 
     private void FireWeapon()
@@ -75,6 +83,17 @@ public class Weapon : MonoBehaviour
             _timer = 0;
             _GunAnimator.SetTrigger("Shoot");
             
+        }
+    }
+    private void Reload()
+    {
+            _reloadTimer += Time.deltaTime;
+        if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
+        {
+            _currentBullets = _maxBullets;
+            Debug.Log("Reloaded!");
+            _GunAnimator.SetTrigger("isReloading");
+            _reloadTimer = 0;
         }
     }
 
