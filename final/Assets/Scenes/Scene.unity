@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792e65808bc31420c93f9b9c0528b30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundmorningSound: {fileID: 0}
+  backgroundmorningSound: {fileID: 8300000, guid: eba70a798134aba42bb9b6e96cd9fa67, type: 3}
   backgroundeveningSound: {fileID: 0}
   scoreSound: {fileID: 0}
   hitSound: {fileID: 0}
