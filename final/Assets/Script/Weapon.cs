@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     private Vector3 _shootRaycastOrigin;
     public string _targetName;
     [SerializeField] private Animator _HandAnimator;
+    [SerializeField] private Animator _GunAnimator;
     [SerializeField] private Transform _shootpoint;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _range = 1000f;
@@ -28,34 +29,37 @@ public class Weapon : MonoBehaviour
     
     void Update()
     {
-        _timer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Mouse0) && _timer >= _fireRate)
-        {
+       
             FireWeapon();
-            _timer = 0;
-            //_HandAnimator.SetTrigger("isFIre");
-        }
+            
+       
     }
 
     private void FireWeapon()
     {
-        if (_currentBullets <= 0)
+        _timer += Time.deltaTime;
+        if (Input.GetKey(KeyCode.Mouse0)&&_timer >= _fireRate)
         {
-            Debug.Log("Out of bullets!");
-            return;
-        }
-        _shootRaycastOrigin = _shootpoint.position;
-        Vector3 shootDirection = _shootpoint.forward;
-        RaycastHit hit;
-        shootDirection = shootDirection + _shootpoint.TransformDirection(new Vector3(Random.Range(-_SpreadFactor, _SpreadFactor), Random.Range(-_SpreadFactor, _SpreadFactor)));
+            if (_currentBullets <= 0)
+            {
+                Debug.Log("Out of bullets!");
+                return;
+            }
+            _shootRaycastOrigin = _shootpoint.position;
+            Vector3 shootDirection = _shootpoint.forward;
+            RaycastHit hit;
+            shootDirection = shootDirection + _shootpoint.TransformDirection(new Vector3(Random.Range(-_SpreadFactor, _SpreadFactor), Random.Range(-_SpreadFactor, _SpreadFactor)));
 
-        if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range))
-        {
-            Debug.Log("Hit: " + hit.transform.gameObject.name);
+            if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range))
+            {
+                Debug.Log("Hit: " + hit.transform.gameObject.name);
 
+            }
+            _currentBullets--;
+            _ShootAudio.Play();
+            _timer = 0;
+            _GunAnimator.SetTrigger("Shoot");
         }
-        _currentBullets--;
-        _ShootAudio.Play();
     }
 
     private void OnDrawGizmos()
