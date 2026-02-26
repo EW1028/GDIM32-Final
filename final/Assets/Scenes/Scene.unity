@@ -435,7 +435,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331889621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86468e12ea451e742bcb6c25be5a971a, type: 3}
   m_Name: 
@@ -1831,7 +1831,7 @@ MonoBehaviour:
   _SpreadFactor: 0.1
   _ShootAudio: {fileID: 1376484470}
   _currentBullets: 0
-  _maxBullets: 30
+  _maxBullets: 100
   _BulletsPrefab: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
   _BulletSpeed: 10
 --- !u!1 &1390067324
@@ -2058,13 +2058,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103275071}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.029770967, y: 0, z: 0, w: 0.9995568}
+  m_LocalRotation: {x: 0.18854493, y: 1.1641532e-10, z: -4.656613e-10, w: 0.9820646}
   m_LocalPosition: {x: 0.0097, y: 0.0921, z: 1.0079}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1376484469}
-  m_LocalEulerAnglesHint: {x: -3.412, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.736, y: 0, z: 0}
 --- !u!1 &2128990907
 GameObject:
   m_ObjectHideFlags: 0

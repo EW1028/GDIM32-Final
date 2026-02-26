@@ -204,6 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   _bulletTransform: {fileID: 8949704625245647606}
+  _bulletCollider: {fileID: 4079845011838275312}
+  _hitEffectPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
 --- !u!136 &4079845011838275312
 CapsuleCollider:
   m_ObjectHideFlags: 0
