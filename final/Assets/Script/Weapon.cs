@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
 {
     private Vector3 _shootRaycastOrigin;
     public string _targetName;
-    [SerializeField] private Animator _HandAnimator;
+    //[SerializeField] private Animator _HandAnimator;
     [SerializeField] private Animator _GunAnimator;
     [SerializeField] private Transform _shootpoint;
     [SerializeField] private float _fireRate = 0.5f;
