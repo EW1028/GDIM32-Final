@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -10,12 +12,18 @@ public class Weapon : MonoBehaviour
     //[SerializeField] private Animator _HandAnimator;
     [SerializeField] private Animator _GunAnimator;
     [SerializeField] private Transform _shootpoint;
+    [SerializeField] private Transform _Bulletshootpoint;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _range = 1000f;
     [SerializeField] private float _SpreadFactor = 0.1f;
     [SerializeField] private AudioSource _ShootAudio;
     [SerializeField] private float _currentBullets;
     [SerializeField] private float _maxBullets = 30f;
+    [SerializeField] private Object _BulletsPrefab;
+    [SerializeField] private float _BulletSpeed;
+
+
+
 
     private float _timer;
 
@@ -23,6 +31,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _currentBullets = _maxBullets;
+       
 
     }
 
@@ -45,13 +54,19 @@ public class Weapon : MonoBehaviour
                 Debug.Log("Out of bullets!");
                 return;
             }
+            Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position,_Bulletshootpoint.transform.rotation * Quaternion.Euler(0, 180, 0));
+           
             _shootRaycastOrigin = _shootpoint.position;
             Vector3 shootDirection = _shootpoint.forward;
             RaycastHit hit;
-            shootDirection = shootDirection + _shootpoint.TransformDirection(new Vector3(Random.Range(-_SpreadFactor, _SpreadFactor), Random.Range(-_SpreadFactor, _SpreadFactor)));
+            shootDirection = shootDirection + _shootpoint.TransformDirection(new Vector3(Random.Range(_SpreadFactor, _SpreadFactor), Random.Range(-_SpreadFactor, _SpreadFactor)));
 
             if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range))
             {
+
+                //Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position, _Bulletshootpoint.transform.rotation);
+                //Bullet.GetComponent<Transform>().forward = shootDirection;
+               // Bullet.GetComponent<Transform>().position = shootDirection* _BulletSpeed;
                 Debug.Log("Hit: " + hit.transform.gameObject.name);
 
             }
@@ -59,6 +74,7 @@ public class Weapon : MonoBehaviour
             _ShootAudio.Play();
             _timer = 0;
             _GunAnimator.SetTrigger("Shoot");
+            
         }
     }
 

@@ -23,5 +23,5 @@ Put your individual final Devlog here.
 ## Open-Source Assets
 Cite any open-source assets here. Put them in a LIST, and use correctly formatted LINKS.
 
-[FPHand](https://rrfreelance.itch.io/first-person-hands-with-gloves)
-[pistal](https://ng1994.itch.io/cyberpunk-gun-model-futuristic-weapon-for-3d-projects)
+[3D model of hand and gun & animation & bullet 3D model](https://assetstore.unity.com/packages/3d/props/weapons/glassofcoins-low-poly-fps-pack-196540)
+
