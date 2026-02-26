@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SFX : MonoBehaviour
 {
+    private void Start()
+    {
+        PlayBackgroundMorning();
+    }
    [Header("Audio Clips")]
    public AudioClip backgroundmorningSound;
    public AudioClip backgroundeveningSound;
