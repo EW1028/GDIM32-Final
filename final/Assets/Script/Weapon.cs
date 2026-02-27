@@ -36,6 +36,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _currentBullets = _maxBullets;
+        
        
 
     }
@@ -43,7 +44,7 @@ public class Weapon : MonoBehaviour
     
     void Update()
     {
-       
+       _GunAnimator.SetBool("Isidieing",true);
             FireWeapon();
         Reload();
 
@@ -82,6 +83,7 @@ public class Weapon : MonoBehaviour
             _ShootAudio.Play();
             _timer = 0;
             _GunAnimator.SetTrigger("Shoot");
+            //_GunAnimator.SetBool("Isidieing",false);
             
         }
     }
@@ -92,11 +94,16 @@ public class Weapon : MonoBehaviour
         {
             _currentBullets = _maxBullets;
             Debug.Log("Reloaded!");
-            _GunAnimator.SetTrigger("isReloading");
+           // _GunAnimator.SetTrigger("isReloading");
+                ForceplayAnim("pistol1_hands_Reload_pistol1");
             _reloadTimer = 0;
         }
     }
-
+    private void ForceplayAnim(string AnimName)
+    {
+        _GunAnimator.Play(AnimName, 0, 0f);
+        _GunAnimator.Update(0);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
