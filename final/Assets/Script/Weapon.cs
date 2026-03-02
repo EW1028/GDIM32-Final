@@ -25,9 +25,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private TMP_Text _TotalMagNumber;
     [SerializeField] private float _reloadTime = 2f;
     [SerializeField] private float _reloadTimer;
-    [SerializeField] private float _X = -3f;
-    [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _returnSpeed = 5f;
+  
     private float _targetRotation;
     private float _currentRotation;
 
@@ -52,7 +50,7 @@ public class Weapon : MonoBehaviour
        _GunAnimator.SetBool("Isidieing",true);
             FireWeapon();
         Reload();
-        Recoll();
+     
 
         _Magnumber.text = _currentBullets.ToString();
             _TotalMagNumber.text = _maxBullets.ToString();
@@ -90,7 +88,7 @@ public class Weapon : MonoBehaviour
             _timer = 0;
             _GunAnimator.SetTrigger("Shoot");
             //_GunAnimator.SetBool("Isidieing",false);
-             _targetRotation += _X;
+            
             
         }
     }
@@ -116,12 +114,7 @@ public class Weapon : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(_shootRaycastOrigin, _shootpoint.forward);
     }
-    private void Recoll()
-    {
-        _targetRotation = Mathf.Lerp(_targetRotation, _X, Time.deltaTime * _returnSpeed);
-        _currentRotation = Mathf.Lerp(_currentRotation, _targetRotation, Time.deltaTime * _speed);
-        transform.localRotation = Quaternion.Euler(_currentRotation,transform.localEulerAngles.y,transform.localEulerAngles.z);
-    }
+
     
 
 

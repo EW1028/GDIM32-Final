@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecollCOntrol : MonoBehaviour
+public class RecollControl : MonoBehaviour
 {
     [SerializeField] private float _X = -3f;
     [SerializeField] private float _speed = 10f;
