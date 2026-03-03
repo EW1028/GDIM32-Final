@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody _playerRigidbody;
     [SerializeField] private float _Speed = 5.0f;
     [SerializeField] private Vector3 __playerVelocity;
+    [SerializeField] private GameObject _EnemyPrefab;
 
 
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     {
         
         playermove();
+       // enemycreate();
     }
     private void playermove()
     {
@@ -32,5 +34,11 @@ public class Player : MonoBehaviour
         _playerRigidbody.velocity = __playerVelocity;
     }
 
-
+    private void enemycreate()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(_EnemyPrefab, transform.position, Quaternion.identity);
+        }
+    }
 }
