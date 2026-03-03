@@ -18,11 +18,11 @@ public class Enemy : MonoBehaviour
 
         if (GameController.Instance != null)
         {
-            GameController.Instance.EnemyHit(this);
+           GameController.Instance.EnemyHit(this);
         }
         if (_HP <= 0)
         {
-            if (GameController.Instance != null)
+           if (GameController.Instance != null)
             {
                 GameController.Instance.EnemyDead(this);
             }
