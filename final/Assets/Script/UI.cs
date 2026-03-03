@@ -5,8 +5,27 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-   
 
-   
-    
+    [SerializeField] private Weapon _weapon;
+    [SerializeField] private GameObject _HitHolder;
+
+    private void Start()
+    {
+        _weapon.Onhit += damgeHolderUI;
+    }
+    public void damgeHolderUI()
+    {
+        _HitHolder.SetActive(true);
+        if (_HitHolder.activeSelf)
+        {
+            StartCoroutine(HitHolderDisappear());
+        }
+    }
+
+    IEnumerator HitHolderDisappear()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _HitHolder.SetActive(false);
+    }
+
 }

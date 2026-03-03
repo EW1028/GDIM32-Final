@@ -17,21 +17,26 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _range = 1000f;
     [SerializeField] private float _SpreadFactor = 0f;
     [SerializeField] private AudioSource _ShootAudio;
+    [SerializeField] private AudioSource _ReloadAudio;
     [SerializeField] private float _currentBullets;
     [SerializeField] private float _maxBullets = 30f;
     [SerializeField] private Object _BulletsPrefab;
     [SerializeField] private float _BulletSpeed;
     [SerializeField] private TMP_Text _Magnumber;
     [SerializeField] private TMP_Text _TotalMagNumber;
+    [SerializeField] private TMP_Text _reloadingCDText;
+    [SerializeField] private GameObject _reloadingCDTextObject;
     [SerializeField] private float _reloadTime = 2f;
     [SerializeField] private float _reloadTimer;
     //public delegate void ShootRecation();
     //public event ShootRecation OnShoot;
-
+    public delegate void hitReaction();
+    public event hitReaction Onhit;
     private float _targetRotation;
     private float _currentRotation;
     private Enemy _enemy;
-    private float _damageNum = 1.0f;
+    public float _damageNum = 1.0f;
+    [SerializeField]private float _ReloadingCD;
 
 
 
@@ -44,6 +49,8 @@ public class Weapon : MonoBehaviour
     {
         _currentBullets = _maxBullets;
         _targetName = "enemy";
+        _reloadTimer = _reloadTime;
+        _reloadingCDTextObject.SetActive(false);
     }
 
     
@@ -56,7 +63,7 @@ public class Weapon : MonoBehaviour
 
         _Magnumber.text = _currentBullets.ToString();
         _TotalMagNumber.text = _maxBullets.ToString();
-
+        CDcalculate();
     }
 
     private void FireWeapon()
@@ -86,11 +93,12 @@ public class Weapon : MonoBehaviour
                 Debug.Log("Hit: " + hit.transform.gameObject.tag);
                 if (hit.transform.gameObject.name == _targetName)
                 {
-                    _enemy = hit.transform.gameObject.GetComponent<Enemy>();
-                    if (_enemy != null)
-                    {
-                        _enemy.TakeDamage(_damageNum);
-                    }
+                    // _enemy = hit.transform.gameObject.GetComponent<Enemy>();
+                    //if (_enemy != null)
+                    //{
+                    //_enemy.TakeDamage(_damageNum);
+                    //}
+                    Onhit?.Invoke();
                 }
 
 
@@ -106,7 +114,9 @@ public class Weapon : MonoBehaviour
     }
     private void Reload()
     {
-            _reloadTimer += Time.deltaTime;
+        _reloadTimer += Time.deltaTime;
+         
+        
         if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
         {
             _currentBullets = _maxBullets;
@@ -114,6 +124,12 @@ public class Weapon : MonoBehaviour
            // _GunAnimator.SetTrigger("isReloading");
                 ForceplayAnim("pistol1_hands_Reload_pistol1");
             _reloadTimer = 0;
+                _ReloadAudio.Play();
+            _ReloadingCD = 0;
+            _reloadingCDTextObject.SetActive(true);
+
+
+
         }
     }
     private void ForceplayAnim(string AnimName)
@@ -126,7 +142,17 @@ public class Weapon : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(_shootRaycastOrigin, _shootpoint.forward);
     }
+    private void CDcalculate()
+    {
+        _ReloadingCD += Time.deltaTime;
+        _reloadingCDText.text = "Reloading CD:"+ _ReloadingCD.ToString("F1") + "s";
+        if (_ReloadingCD >= _reloadTime)
+        {
+            _reloadingCDTextObject.SetActive(false);
+        }
 
+        
+    }
     
 
 

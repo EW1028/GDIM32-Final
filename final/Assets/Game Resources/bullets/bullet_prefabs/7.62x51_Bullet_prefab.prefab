@@ -202,10 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fee387f5ba14ef4dbefbb5ec47ce1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 200
   _bulletTransform: {fileID: 8949704625245647606}
   _bulletCollider: {fileID: 4079845011838275312}
-  _hitEffectPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
 --- !u!136 &4079845011838275312
 CapsuleCollider:
   m_ObjectHideFlags: 0

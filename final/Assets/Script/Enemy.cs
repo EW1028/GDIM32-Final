@@ -5,28 +5,49 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _HP = 3;
+    [SerializeField]private Weapon _weapon;
+
+    private void Start()
+    {
+        _weapon.Onhit += TakeEnemyDamage;
+    }
 
     private void Update()
     {
         //Debug.Log(_HP);
+        enemydestroy();
 
     }
-
-    public void TakeDamage(float damage)
+    
+    public void TakeEnemyDamage()
     {
-        _HP -= damage;
+        _HP -= _weapon._damageNum;
+    }
 
-        if (GameController.Instance != null)
-        {
-           GameController.Instance.EnemyHit(this);
-        }
+    private void enemydestroy()
+    {
         if (_HP <= 0)
         {
-           if (GameController.Instance != null)
-            {
-                GameController.Instance.EnemyDead(this);
-            }
+            
             Destroy(gameObject);
         }
     }
+
+    //public void TakeDamage(float damage)
+   // {
+        //_HP -= damage;
+
+        //if (GameController.Instance != null)
+        //{
+          // GameController.Instance.EnemyHit(this);
+       // }
+       // if (_HP <= 0)
+       // {
+          // if (GameController.Instance != null)
+          //  {
+           //     GameController.Instance.EnemyDead(this);
+          //  }
+          //  Destroy(gameObject);
+       // }
+    //}
 }
