@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int hp = 3;
+    [SerializeField] private float _HP = 3;
 
-    public void TakeDamage(int damage)
+    private void Update()
     {
-        hp -= damage;
+        Debug.Log(_HP);
+
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _HP -= damage;
 
         if (GameController.Instance != null)
         {
             GameController.Instance.EnemyHit(this);
         }
-        if (hp <= 0)
+        if (_HP <= 0)
         {
             if (GameController.Instance != null)
             {

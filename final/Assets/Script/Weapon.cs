@@ -30,6 +30,8 @@ public class Weapon : MonoBehaviour
 
     private float _targetRotation;
     private float _currentRotation;
+    private Enemy _enemy;
+    private float _damageNum = 1.0f;
 
 
 
@@ -41,6 +43,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _currentBullets = _maxBullets;
+        _targetName = "enemy";
     }
 
     
@@ -81,6 +84,15 @@ public class Weapon : MonoBehaviour
                 //Bullet.GetComponent<Transform>().forward = shootDirection;
                // Bullet.GetComponent<Transform>().position = shootDirection* _BulletSpeed;
                 Debug.Log("Hit: " + hit.transform.gameObject.name);
+                if (hit.transform.gameObject.name == _targetName)
+                {
+                    _enemy = hit.transform.gameObject.GetComponent<Enemy>();
+                    if (_enemy != null)
+                    {
+                        _enemy.TakeDamage(_damageNum);
+                    }
+                }
+
 
             }
             _currentBullets--;
