@@ -1,34 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _HP = 3;
     [SerializeField]private Weapon _weapon;
+    [SerializeField] private TMP_Text _HPUI;
+    private float _curentHP;
 
     private void Start()
     {
         _weapon.Onhit += TakeEnemyDamage;
+        _curentHP = _HP;
     }
 
     private void Update()
     {
         //Debug.Log(_HP);
         enemydestroy();
+        _HPUI.text ="HP = "+ _curentHP.ToString();
 
     }
     
     public void TakeEnemyDamage()
     {
-        _HP -= _weapon._damageNum;
+        _curentHP -= _weapon._damageNum;
     }
 
     private void enemydestroy()
     {
-        if (_HP <= 0)
+        if (_curentHP <= 0)
         {
-            
+            _curentHP = _HP;
             Destroy(gameObject);
         }
     }
