@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_HP);
+        //Debug.Log(_HP);
 
     }
 

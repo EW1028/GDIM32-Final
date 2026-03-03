@@ -83,7 +83,7 @@ public class Weapon : MonoBehaviour
                 //Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position, _Bulletshootpoint.transform.rotation);
                 //Bullet.GetComponent<Transform>().forward = shootDirection;
                // Bullet.GetComponent<Transform>().position = shootDirection* _BulletSpeed;
-                Debug.Log("Hit: " + hit.transform.gameObject.name);
+                Debug.Log("Hit: " + hit.transform.gameObject.tag);
                 if (hit.transform.gameObject.name == _targetName)
                 {
                     _enemy = hit.transform.gameObject.GetComponent<Enemy>();

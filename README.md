@@ -1,5 +1,13 @@
 # GDIM32-Final
 ## Check-In
+### Group Devlog
+During the development of our game, we utilized raycasting. When implementing the interaction mechanism of shooting by left-clicking the mouse to create damage with enemy, we considered how to accurately locate the target of the shot. Therefore, we used a raycasting ray with its origin at the muzzle: _shootRaycastOrigin = _shootpoint.position; Shootpoint is an empty GameObject placed in front of the pistol model. 
+
+We also set the direction to be forward: Vector3 shootDirection = _shootpoint.forward; _range represents the effective range of the pistol we designed. We then use the code Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range) to retrieve hit. 
+
+the GameObject that the raycast hits (RaycastHit hit;). We can get the name and tag of the GameObject via hit.transform.gameObject.name or hit.transform.gameObject.tag.
+
+
 ### Team Member Name 1
 Put your individual check-in Devlog here.
 ### Team Member Name 2
@@ -21,7 +29,7 @@ Put your individual final Devlog here.
 Put your individual final Devlog here.
 
 ## Open-Source Assets
-Cite any open-source assets here. Put them in a LIST, and use correctly formatted LINKS.
+
 
 [3D model of hand and gun & animation & bullet 3D model](https://assetstore.unity.com/packages/3d/props/weapons/glassofcoins-low-poly-fps-pack-196540)
 [BGM morning](https://www.youtube.com/watch?v=KIh8PEwFCtg)
