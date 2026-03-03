@@ -67,5 +67,5 @@ public class GameController : MonoBehaviour
         score += amount;
         OnScoreChanged?.Invoke(score);
     }
-
+    
 }

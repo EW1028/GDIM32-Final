@@ -8,8 +8,18 @@ We also set the direction to be forward: Vector3 shootDirection = _shootpoint.fo
 the GameObject that the raycast hits (RaycastHit hit;). We can get the name and tag of the GameObject via hit.transform.gameObject.name or hit.transform.gameObject.tag.
 
 
-### Team Member Name 1
-Put your individual check-in Devlog here.
+### Team Member Ruichen Ma
+
+In this project, I was responsible for developing the player movement and shooting-related mechanics. I downloaded 3D models and animations of arms and pistols from the Unity Asset Store online. In the code, I implemented player movement, shooting, and reloading functionalities.
+
+For the shooting mechanic, I used raycasting: I set the muzzle as the origin of the ray and cast a straight line forward with the code Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range). This allowed me to retrieve information about the object hit by the ray through the hit variable. Additionally, while casting the ray, I instantiated a bullet prefab using the code Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position, _Bulletshootpoint.transform.rotation * Quaternion.Euler(0, 180, 0)), and made it move forward with the following logic: Vector3 moveDirection = -_bulletTransform.forward.normalized; _bulletTransform.position += moveDirection * speed * Time.deltaTime;
+
+For player movement, I implemented vector-based movement with the formula Vector3 Dir = (_playerTransform.forward * verticalInput + _playerTransform.right * horizontalInput).normalized;.
+
+Since our game is a first-person shooter, I captured the X and Y axis data of the mouse. I mapped this data to in-game camera rotation with the code: xRotation -= mouseY; playerBody.Rotate(Vector3.up * mouseX); transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); Meanwhile, I used Mathf.Clamp to limit the range of the player's vertical camera rotation (up and down).
+
+Finally, when the ray hit an enemy, I sent an event to trigger the enemy's health reduction interaction and the UI display interaction for hit feedback.
+
 ### Team Member Name 2
 Put your individual check-in Devlog here.
 ### Team Member Eric Wei
