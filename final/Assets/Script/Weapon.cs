@@ -25,7 +25,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private TMP_Text _TotalMagNumber;
     [SerializeField] private float _reloadTime = 2f;
     [SerializeField] private float _reloadTimer;
-  
+    //public delegate void ShootRecation();
+    //public event ShootRecation OnShoot;
+
     private float _targetRotation;
     private float _currentRotation;
 
@@ -39,26 +41,24 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _currentBullets = _maxBullets;
-        
-       
-
     }
 
     
     void Update()
     {
        _GunAnimator.SetBool("Isidieing",true);
-            FireWeapon();
+        FireWeapon();
         Reload();
      
 
         _Magnumber.text = _currentBullets.ToString();
-            _TotalMagNumber.text = _maxBullets.ToString();
+        _TotalMagNumber.text = _maxBullets.ToString();
 
     }
 
     private void FireWeapon()
     {
+        //OnShoot?.Invoke();
         _timer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0)&&_timer >= _fireRate)
         {

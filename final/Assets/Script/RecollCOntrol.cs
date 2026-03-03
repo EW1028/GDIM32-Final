@@ -7,6 +7,7 @@ public class RecollControl : MonoBehaviour
     [SerializeField] private float _X = -3f;
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _returnSpeed = 5f;
+    private Weapon _weapon;
 
     private float _targetRotation;
     private float _currentRotation;
@@ -14,7 +15,10 @@ public class RecollControl : MonoBehaviour
 
  
 
-    
+    void Start()
+    {
+      // _weapon.OnShoot += Fire;
+    }
     void Update()
     {
         _targetRotation = Mathf.Lerp(_targetRotation, _X, Time.deltaTime * _returnSpeed);
