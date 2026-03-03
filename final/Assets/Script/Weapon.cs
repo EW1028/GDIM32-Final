@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Transform _Bulletshootpoint;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _range = 1000f;
-    [SerializeField] private float _SpreadFactor = 0.1f;
+    [SerializeField] private float _SpreadFactor = 0f;
     [SerializeField] private AudioSource _ShootAudio;
     [SerializeField] private float _currentBullets;
     [SerializeField] private float _maxBullets = 30f;
