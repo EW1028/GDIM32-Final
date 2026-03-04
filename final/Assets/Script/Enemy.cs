@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,13 +7,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _HP = 3;
-    [SerializeField]private Weapon _weapon;
+    private Weapon _weapon;
     [SerializeField] private TMP_Text _HPUI;
     private float _curentHP;
+    //public delegate void deathaction();
+    public static Action<Enemy> 敌人死亡;
 
     private void Start()
     {
-        _weapon.Onhit += TakeEnemyDamage;
+        _weapon = GameController.Instance.Weapon;
+       // _weapon.Onhit += TakeEnemyDamage;
         _curentHP = _HP;
     }
 
@@ -34,7 +38,9 @@ public class Enemy : MonoBehaviour
         if (_curentHP <= 0)
         {
             _curentHP = _HP;
-            Destroy(gameObject);
+            敌人死亡?.Invoke(this);
+            Destroy(gameObject,0.1f);
+
         }
     }
 

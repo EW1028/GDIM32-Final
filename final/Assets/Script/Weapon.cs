@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
     //public delegate void ShootRecation();
     //public event ShootRecation OnShoot;
     public delegate void hitReaction();
-    public event hitReaction Onhit;
+    //public event hitReaction Onhit;
     private float _targetRotation;
     private float _currentRotation;
     private Enemy _enemy;
@@ -84,24 +84,25 @@ public class Weapon : MonoBehaviour
             RaycastHit hit;
             shootDirection = shootDirection + _shootpoint.TransformDirection(new Vector3(Random.Range(_SpreadFactor, _SpreadFactor), Random.Range(-_SpreadFactor, _SpreadFactor)));
 
-            if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range))
+            if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range, LayerMask.GetMask("Enemy")))
             {
 
                 //Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position, _Bulletshootpoint.transform.rotation);
                 //Bullet.GetComponent<Transform>().forward = shootDirection;
                // Bullet.GetComponent<Transform>().position = shootDirection* _BulletSpeed;
                 Debug.Log("Hit: " + hit.transform.gameObject.tag);
-                if (hit.transform.gameObject.name == _targetName)
-                {
+                //if (hit.transform.gameObject.name == _targetName)
+                //{
                     // _enemy = hit.transform.gameObject.GetComponent<Enemy>();
                     //if (_enemy != null)
                     //{
                     //_enemy.TakeDamage(_damageNum);
                     //}
-                    Onhit?.Invoke();
-                }
+                //Onhit?.Invoke();
+                //}
 
-
+                hit.transform.gameObject.GetComponent<Enemy>()?.TakeEnemyDamage();
+                GameController.Instance.UI.激活受击反馈UI();
             }
             _currentBullets--;
             _ShootAudio.Play();

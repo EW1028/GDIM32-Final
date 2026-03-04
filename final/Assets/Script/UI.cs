@@ -8,12 +8,13 @@ public class UI : MonoBehaviour
 
     [SerializeField] private Weapon _weapon;
     [SerializeField] private GameObject _HitHolder;
+    
 
     private void Start()
     {
-        _weapon.Onhit += damgeHolderUI;
+        //_weapon.Onhit += damgeHolderUI;
     }
-    public void damgeHolderUI()
+    public void 激活受击反馈UI()
     {
         _HitHolder.SetActive(true);
         if (_HitHolder.activeSelf)

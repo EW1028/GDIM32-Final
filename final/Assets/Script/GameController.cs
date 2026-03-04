@@ -16,6 +16,9 @@ public class GameController : MonoBehaviour
 
     public event Action<int> OnScoreChanged;
 
+    public Weapon Weapon;
+    public UI UI;
+
     public bool IsPlaying { get; private set; } = true;
     private int score = 0;
 
