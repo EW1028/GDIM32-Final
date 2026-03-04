@@ -23,15 +23,19 @@ public class Player : MonoBehaviour
     {
         
         playermove();
-       // enemycreate();
+       enemycreate();
     }
     private void playermove()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector3 Dir = (_playerTransform.forward * verticalInput + _playerTransform.right * horizontalInput).normalized;
+        //float LeftIput = -Input.GetAxis("Horizontal");
+        //float RightIput = Input.GetAxis("Horizontal");
+        Vector3 Dir = (_playerTransform.forward * verticalInput  + _playerTransform.right * horizontalInput).normalized;
         __playerVelocity = Dir * _Speed;
         _playerRigidbody.velocity = __playerVelocity;
+        //Debug.Log("verticalInput: " + verticalInput);
+        //Debug.Log("horizontalInput: " + horizontalInput);
     }
 
     private void enemycreate()
