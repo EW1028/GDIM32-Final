@@ -765,10 +765,17 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
   cloudProjectId: 259eeaea-e4ea-4fe6-a83d-769d55516fd0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: final (1)
+=======
+  cloudProjectId: 0148fbdd-6ded-4d37-9648-daf3e34fbb22
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: final
+>>>>>>> bc4bfd977da7cebc5bd96c88a6e0071bbbf2a819
   organizationId: unity_0a43ed529ce7437f5443
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
