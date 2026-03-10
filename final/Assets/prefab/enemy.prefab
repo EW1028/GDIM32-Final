@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4419076948128198728}
   - component: {fileID: 7589978250063582793}
   - component: {fileID: 7435674445754998813}
+  - component: {fileID: 7500153949655772400}
   m_Layer: 6
   m_Name: enemyInfoUI
   m_TagString: Untagged
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7500153949655772400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130124438356873906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a8f999654425b4baba7ffdc59119f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 0}
 --- !u!1 &4737572574209003375
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HP: 3
-  _weapon: {fileID: 0}
   _HPUI: {fileID: 7151502139163764684}
 --- !u!1 &8435618703768772401
 GameObject:

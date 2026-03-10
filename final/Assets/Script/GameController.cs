@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
 
     public Weapon Weapon;
     public UI UI;
+    public Player Player;
+    public CameraController CameraController;
     [SerializeField] private GameObject _gamestop;
 
     public bool IsPlaying { get; private set; } = true;
