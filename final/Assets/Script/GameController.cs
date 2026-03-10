@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 
     public Weapon Weapon;
     public UI UI;
+    [SerializeField] private GameObject _gamestop;
 
     public bool IsPlaying { get; private set; } = true;
     private int score = 0;
@@ -74,11 +75,13 @@ public class GameController : MonoBehaviour
     }
     public void PauseGame()
     {
+        _gamestop.SetActive(true);
        Time.timeScale = 0f;
         _Ispause = true;
     }
     public void ResumeGame()
     {
+        _gamestop.SetActive(false);
         Time.timeScale = 1f;
         _Ispause = false;
     }
@@ -89,10 +92,12 @@ public class GameController : MonoBehaviour
             if (_Ispause)
             {
                 ResumeGame();
+                
             }
             else
             {
                 PauseGame();
+                
             }
         }
     }
