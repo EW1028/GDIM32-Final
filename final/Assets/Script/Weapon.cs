@@ -28,13 +28,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _reloadingCDTextObject;
     [SerializeField] private float _reloadTime = 2f;
     [SerializeField] private float _reloadTimer;
-    //public delegate void ShootRecation();
-    //public event ShootRecation OnShoot;
+
     public delegate void hitReaction();
-    //public event hitReaction Onhit;
-    private float _targetRotation;
-    private float _currentRotation;
-    private Enemy _enemy;
+
     public float _damageNum = 1.0f;
     [SerializeField]private float _ReloadingCD;
 
@@ -59,8 +55,6 @@ public class Weapon : MonoBehaviour
        _GunAnimator.SetBool("Isidieing",true);
         FireWeapon();
         Reload();
-     
-
         _Magnumber.text = _currentBullets.ToString();
         _TotalMagNumber.text = _maxBullets.ToString();
         CDcalculate();
@@ -68,7 +62,6 @@ public class Weapon : MonoBehaviour
 
     private void FireWeapon()
     {
-        //OnShoot?.Invoke();
         _timer += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0)&&_timer >= _fireRate)
         {
@@ -86,21 +79,7 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range, LayerMask.GetMask("Enemy")))
             {
-
-                //Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position, _Bulletshootpoint.transform.rotation);
-                //Bullet.GetComponent<Transform>().forward = shootDirection;
-               // Bullet.GetComponent<Transform>().position = shootDirection* _BulletSpeed;
                 Debug.Log("Hit: " + hit.transform.gameObject.tag);
-                //if (hit.transform.gameObject.name == _targetName)
-                //{
-                    // _enemy = hit.transform.gameObject.GetComponent<Enemy>();
-                    //if (_enemy != null)
-                    //{
-                    //_enemy.TakeDamage(_damageNum);
-                    //}
-                //Onhit?.Invoke();
-                //}
-
                 hit.transform.gameObject.GetComponent<Enemy>()?.TakeEnemyDamage();
                 GameController.Instance.UI.激活受击反馈UI();
             }
@@ -108,9 +87,6 @@ public class Weapon : MonoBehaviour
             _ShootAudio.Play();
             _timer = 0;
             _GunAnimator.SetTrigger("Shoot");
-            //_GunAnimator.SetBool("Isidieing",false);
-            
-            
         }
     }
     private void Reload()

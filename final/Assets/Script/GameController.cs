@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     public bool IsPlaying { get; private set; } = true;
     private int score = 0;
 
+    private bool _Ispause = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -70,5 +72,28 @@ public class GameController : MonoBehaviour
         score += amount;
         OnScoreChanged?.Invoke(score);
     }
-    
+    public void PauseGame()
+    {
+       Time.timeScale = 0f;
+        _Ispause = true;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        _Ispause = false;
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_Ispause)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
 }
