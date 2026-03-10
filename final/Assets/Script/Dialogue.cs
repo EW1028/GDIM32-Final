@@ -6,12 +6,14 @@ public class Dialogue : MonoBehaviour
 {
     private bool _isDialogueActive;
     private bool _waitForPlayerAnswer;
-    private float _StartDistance;
+    private float _StartDistance = 4f;
+    [SerializeField] private GameObject _TextUI;
+
     void Update()
     {
         if(Vector3.Distance(transform.position, GameController.Instance.Player.transform.position) < _StartDistance)
         {
-            // Trigger dialogue
+            _TextUI.SetActive(true);
         }
     }
 
