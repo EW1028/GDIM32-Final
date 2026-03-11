@@ -21,8 +21,9 @@ public class GameController : MonoBehaviour
     public UI UI;
     public Player Player;
     public CameraController CameraController;
-    public DialogueLogic DialogueLogic;
+    //public DialogueLogic DialogueLogic;
     public DialogueUI DialogueUI;
+    //public DialogueScript DialogueScript;
     [SerializeField] private GameObject _gamestop;
 
     public bool IsPlaying { get; private set; } = true;

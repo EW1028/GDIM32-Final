@@ -2601,6 +2601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TextUI: {fileID: 460386474}
+  _StartDialogue: {fileID: 11400000, guid: 832c6af0c5c00ef4e8ec61c12cca6cfc, type: 2}
 --- !u!1 &945121884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4091,7 +4092,6 @@ MonoBehaviour:
   UI: {fileID: 1162224579}
   Player: {fileID: 190091963}
   CameraController: {fileID: 331889623}
-  DialogueLogic: {fileID: 906185865}
   DialogueUI: {fileID: 151447707}
   _gamestop: {fileID: 2065221715}
 --- !u!4 &1858849956

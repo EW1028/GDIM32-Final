@@ -9,8 +9,16 @@ public class DialogueLogic : MonoBehaviour
     private bool _waitForPlayerAnswer;
     private float _StartDistance = 4f;
     [SerializeField] private GameObject _TextUI;
+    [SerializeField] private DialogueScript _StartDialogue;
+    private DialogueScript _currentDialogue;
     private int _CurrentLine = 0;
 
+    
+    void Start()
+    {
+        _TextUI.SetActive(false);
+        _currentDialogue = _StartDialogue;
+    }
 
     void Update()
     {
@@ -32,8 +40,12 @@ public class DialogueLogic : MonoBehaviour
     private void StartDialogue()
     {
         _isDialogueActive = true;
+        if(_CurrentLine < _currentDialogue._lines.Length)
+        {
+            GameController.Instance.DialogueUI.ShowDialogue(_currentDialogue._lines[_CurrentLine]);
+            _CurrentLine++;
+        }
         
-
     }
 
 }
