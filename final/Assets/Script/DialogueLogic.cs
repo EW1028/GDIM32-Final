@@ -35,6 +35,10 @@ public class DialogueLogic : MonoBehaviour
                 
             //}
         }
+        else
+        {
+            playerleave();
+        }
     }
 
     private void StartDialogue()
@@ -45,7 +49,20 @@ public class DialogueLogic : MonoBehaviour
             GameController.Instance.DialogueUI.ShowDialogue(_currentDialogue._lines[_CurrentLine]);
             _CurrentLine++;
         }
+        else
+        {
+            GameController.Instance.DialogueUI.EndDialogue();
+        }
         
+    }
+    private void playerleave()
+    {
+         _TextUI.SetActive(false);
+        _isDialogueActive = false;
+        _waitForPlayerAnswer = false;
+        _CurrentLine = 0;
+        _currentDialogue = _StartDialogue;
+        GameController.Instance.DialogueUI.EndDialogue();
     }
 
 }

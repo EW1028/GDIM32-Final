@@ -16,4 +16,17 @@ public class DialogueUI : MonoBehaviour
         _PlayerOptions.SetActive(false);
         _DialogueText.text = DialogueText;
     }   
+    public void EndDialogue()
+    {
+        gameObject.SetActive(false);
+        _NpcDialogue.SetActive(false);
+        _PlayerOptions.SetActive(false);
+        _DialogueText.text = "";
+    }
+    public void DialogueHide()
+    {
+        _NpcDialogue.SetActive(false);
+        _PlayerOptions.SetActive(false);
+        gameObject.SetActive(false);
+    }
 }
