@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 11Dialogue
   m_EditorClassIdentifier: 
   _lines:
-  - 'you have to '
+  - you have to help me
   _playerReplyOptions: []
   _npcReplies: []

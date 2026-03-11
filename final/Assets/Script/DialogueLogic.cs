@@ -30,39 +30,46 @@ public class DialogueLogic : MonoBehaviour
                 StartDialogue();
                 Debug.Log("Start Dialogue");
             }
-            //else if (!_isDialogueActive)
-            //{
+            else if (!_isDialogueActive)
+            {
                 
-            //}
+            }
         }
         else
         {
-            playerleave();
+            DialogueEnd();
         }
     }
 
     private void StartDialogue()
     {
         _isDialogueActive = true;
+        Cursor.lockState = CursorLockMode.None;
         if(_CurrentLine < _currentDialogue._lines.Length)
         {
             GameController.Instance.DialogueUI.ShowDialogue(_currentDialogue._lines[_CurrentLine]);
             _CurrentLine++;
         }
+        else if(_currentDialogue._playerReplyOptions != null && _currentDialogue._playerReplyOptions.Length > 0)
+        {
+            _waitForPlayerAnswer = true;
+            GameController.Instance.DialogueUI.ShowAnswer(_currentDialogue._playerReplyOptions);
+        }
         else
         {
-            GameController.Instance.DialogueUI.EndDialogue();
+            DialogueEnd();
         }
         
     }
-    private void playerleave()
+    private void DialogueEnd()
     {
          _TextUI.SetActive(false);
         _isDialogueActive = false;
         _waitForPlayerAnswer = false;
         _CurrentLine = 0;
         _currentDialogue = _StartDialogue;
-        GameController.Instance.DialogueUI.EndDialogue();
+        GameController.Instance.DialogueUI.DialogueHide();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }
