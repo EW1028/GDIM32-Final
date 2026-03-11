@@ -450,7 +450,8 @@ PrefabInstance:
       value: Hangars
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 602948665315178138, guid: fb6fc812c04eb4afd9c07ec350aade50, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb6fc812c04eb4afd9c07ec350aade50, type: 3}
