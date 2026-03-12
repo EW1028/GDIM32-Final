@@ -7,4 +7,7 @@ public class DialogueScript : ScriptableObject
     public string[] _lines;
     public string[] _playerReplyOptions;
     public DialogueScript[] _npcReplies;
+
+    public bool _isQuestStart;
+    
 }
