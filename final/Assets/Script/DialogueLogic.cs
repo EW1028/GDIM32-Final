@@ -71,5 +71,14 @@ public class DialogueLogic : MonoBehaviour
         GameController.Instance.DialogueUI.DialogueHide();
         Cursor.lockState = CursorLockMode.Locked;
     }
+    public void AnswerSelection(int Option)
+    {
+        Debug.Log("Player selected option: " + Option);
+        // Implement logic based on player's choice
+        _CurrentLine = 0; // Reset line index for the next dialogue
+        _waitForPlayerAnswer = false;
+        _currentDialogue = _currentDialogue._npcReplies[Option]; // Move to the next dialogue based on player's choice
+        StartDialogue();
 
+    }
 }

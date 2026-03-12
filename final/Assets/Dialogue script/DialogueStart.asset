@@ -19,5 +19,5 @@ MonoBehaviour:
   - yes
   - no
   _npcReplies:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 966636c990f20384d8296893bc79af17, type: 2}
+  - {fileID: 11400000, guid: 8b2de26608121564db208a0f119cb87a, type: 2}
