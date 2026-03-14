@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     public UI UI;
     public Player Player;
     public CameraController CameraController;
+    public Enemy Enemy;
+    public QuestManager QuestManager;
     //public DialogueLogic DialogueLogic;
     public DialogueUI DialogueUI;
     public QuestUI QuestUI;

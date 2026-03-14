@@ -67,7 +67,7 @@ public class Weapon : MonoBehaviour
         {
             if (_currentBullets <= 0)
             {
-                Debug.Log("Out of bullets!");
+               // Debug.Log("Out of bullets!");
                 return;
             }
             Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position,_Bulletshootpoint.transform.rotation * Quaternion.Euler(0, 180, 0));
@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range, LayerMask.GetMask("Enemy")))
             {
-                Debug.Log("Hit: " + hit.transform.gameObject.tag);
+               // Debug.Log("Hit: " + hit.transform.gameObject.tag);
                 hit.transform.gameObject.GetComponent<Enemy>()?.TakeEnemyDamage();
                 GameController.Instance.UI.激活受击反馈UI();
             }
@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
         {
             _currentBullets = _maxBullets;
-            Debug.Log("Reloaded!");
+           // Debug.Log("Reloaded!");
            // _GunAnimator.SetTrigger("isReloading");
                 ForceplayAnim("pistol1_hands_Reload_pistol1");
             _reloadTimer = 0;

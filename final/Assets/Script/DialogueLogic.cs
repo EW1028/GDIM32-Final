@@ -17,7 +17,7 @@ public class DialogueLogic : MonoBehaviour
     private int _CurrentLine = 0;
     private string _questtext;
     private RectTransform _lastSpawnQuest;
-    private float space = 10f;
+    //private float space = 10f;
     private bool _isQuestcreateing = true;
     
 
@@ -29,7 +29,7 @@ public class DialogueLogic : MonoBehaviour
     {
         _TextUI.SetActive(false);
         _currentDialogue = _StartDialogue;
-       // _questtext ="I need you kill" + _questinfo._targetAmount+ _questinfo._targetName;
+      
 
 }
 
@@ -41,7 +41,7 @@ void Update()
             if(Input.GetKeyDown(KeyCode.E) && !_waitForPlayerAnswer )
             {
                 StartDialogue();
-                Debug.Log("Start Dialogue");
+                //Debug.Log("Start Dialogue");
             }
             //else if (!_isDialogueActive)
             //{
@@ -65,14 +65,8 @@ void Update()
         if (_currentDialogue._Quest != null && _isQuestcreateing == true)
         {
             GameController.Instance.QuestUI.CreateQuest(_currentDialogue._Quest._targetAmount, _currentDialogue._Quest._targetName, _currentDialogue._Quest._QuestName);
-            SpawnQuests();
-           
-            //GameController.Instance.DialogueUI.ShowDialogue(_questtext);
-          
-            //_waitForPlayerAnswer = true;
+            GameController.Instance.QuestManager.SpawnQuests();
             _isQuestcreateing = false;
-
-
 
         }
         //OnDisable();
@@ -106,36 +100,15 @@ void Update()
     }
     public void AnswerSelection(int Option)
     {
-        Debug.Log("Player selected option: " + Option);
-        // Implement logic based on player's choice
-        _CurrentLine = 0; // Reset line index for the next dialogue
+        _CurrentLine = 0; 
         _waitForPlayerAnswer = false;
-        _currentDialogue = _currentDialogue._npcReplies[Option]; // Move to the next dialogue based on player's choice
+        _currentDialogue = _currentDialogue._npcReplies[Option]; 
         StartDialogue();
-        
-
     }
-    public void SpawnQuests()
+    public void DiaSpawnQuests()
     {
-       // GameController.Instance.QuestUI.CreateQuest(_currentDialogue._Quest._targetAmount, _currentDialogue._Quest._targetName, _currentDialogue._Quest._QuestName);
-        GameObject NewQuest = Instantiate(_questBoard, _questUI);
-        RectTransform rt = NewQuest.GetComponent<RectTransform>();
        
-
-        rt.anchorMin = new Vector2(0, 1);
-        rt.anchorMax = new Vector2(0, 1);
-        rt.pivot = new Vector2(0, 1);
-
-        if (_lastSpawnQuest == null)
-        {
-            rt.anchoredPosition = new Vector2(0, 0);
-        }
-        else
-        {
-            float YPos = _lastSpawnQuest.anchoredPosition.y - _lastSpawnQuest.rect.height - space;
-            rt.anchoredPosition = new Vector2(0, YPos);
-        }
-        _lastSpawnQuest = rt;
+        GameController.Instance.QuestManager.SpawnQuests();
         _isQuestcreateing = false;
     }
 }

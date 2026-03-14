@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private TMP_Text _HPUI;
     private float _curentHP;
     //public delegate void deathaction();
-    public static Action<Enemy> 敌人死亡;
+    public static Action<Enemy> enemyDeath;
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         if (_curentHP <= 0)
         {
             _curentHP = _HP;
-            敌人死亡?.Invoke(this);
+            enemyDeath?.Invoke(this);
             Destroy(gameObject,0.1f);
 
         }
