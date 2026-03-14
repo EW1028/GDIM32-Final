@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         
         playermove();
-       enemycreate();
+       //enemycreate();
     }
     private void playermove()
     {
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     private void enemycreate()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             Instantiate(_EnemyPrefab, transform.position, Quaternion.identity);
         }

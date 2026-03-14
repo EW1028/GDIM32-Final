@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9a6e669a3251540bcc7561eb1d0f65, type: 3}
-  m_Name: 10Dialogue
+  m_Name: 110Dialogue
   m_EditorClassIdentifier: 
   _lines:
-  - I need you to kill sth.
+  - here is another quest
   _playerReplyOptions:
-  - ok
-  - that is great
+  - I can see it
   _npcReplies:
-  - {fileID: 11400000, guid: 68b180bc8048339498c572f0a809392b, type: 2}
-  - {fileID: 11400000, guid: 68b180bc8048339498c572f0a809392b, type: 2}
-  _Quest: {fileID: 0}
+  - {fileID: 11400000, guid: 7b05cab9f06c4c44a9103fe3030a5079, type: 2}
+  _Quest: {fileID: 11400000, guid: e420a80a714c941449d96ce1c17aa246, type: 2}
   _isQuestStart: 0

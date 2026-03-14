@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     public CameraController CameraController;
     //public DialogueLogic DialogueLogic;
     public DialogueUI DialogueUI;
+    public QuestUI QuestUI;
     //public DialogueScript DialogueScript;
     [SerializeField] private GameObject _gamestop;
 

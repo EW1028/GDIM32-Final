@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1778abadd527b59478d22e0682e50ad7, type: 3}
-  m_Name: Quest List
+  m_Script: {fileID: 11500000, guid: ab9a6e669a3251540bcc7561eb1d0f65, type: 3}
+  m_Name: 1000Dialogue
   m_EditorClassIdentifier: 
-  _questInfo:
-  - _targetName: 
-    _questTargets:
-    - _targetName: 
-      _targetAmount: 0
-      _currentAmount: 0
+  _lines:
+  - go
+  _playerReplyOptions: []
+  _npcReplies: []
+  _Quest: {fileID: 0}
+  _isQuestStart: 0
