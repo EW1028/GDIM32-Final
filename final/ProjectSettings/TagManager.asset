@@ -6,6 +6,8 @@ TagManager:
   tags:
   - test wall
   - enemy
+  - air wall
+  - ground
   layers:
   - Default
   - TransparentFX
