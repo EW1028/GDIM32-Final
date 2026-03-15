@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,9 +8,12 @@ public class QuestManager : MonoBehaviour
 {
     [SerializeField] private GameObject _questBoard;
     [SerializeField] private RectTransform _questUI;
+    [SerializeField] private GameObject _alarmUI;
+
     private float space = 10f;
     //private RectTransform _lastSpawnQuest;
     private List<RectTransform>_activeQuests = new List<RectTransform>();
+    private int _maxQuests = 3;
     private void Start()
     {
         QuestUI.QuestDestroy += OnQuestDestroy;
@@ -17,6 +21,12 @@ public class QuestManager : MonoBehaviour
 
     public void SpawnQuests()
     {
+        _alarmUI.SetActive(false);
+        if (_activeQuests.Count >= _maxQuests)
+        {
+            StartCoroutine(ShowForSecond());
+            return;
+        }
 
         GameObject NewQuest = Instantiate(_questBoard, _questUI);
         RectTransform rt = NewQuest.GetComponent<RectTransform>();
@@ -37,12 +47,20 @@ public class QuestManager : MonoBehaviour
             rt.anchoredPosition = new Vector2(0, YPos);
         }
         _activeQuests.Add(rt);
+
+        Debug.Log(_activeQuests.Count);
         
     }
-    
+
+   IEnumerator ShowForSecond()
+    {
+        _alarmUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        _alarmUI.SetActive(false);
+    }
     public void OnQuestDestroy(QuestUI questUI)
     {
-        RectTransform DestrouRt = _questUI.GetComponent<RectTransform>();
+        RectTransform DestrouRt = questUI.GetComponent<RectTransform>();
         _activeQuests.Remove(DestrouRt);
 
         float currentY = 0;

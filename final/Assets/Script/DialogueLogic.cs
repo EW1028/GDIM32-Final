@@ -65,7 +65,7 @@ void Update()
         if (_currentDialogue._Quest != null && _isQuestcreateing == true)
         {
             GameController.Instance.QuestUI.CreateQuest(_currentDialogue._Quest._targetAmount, _currentDialogue._Quest._targetName, _currentDialogue._Quest._QuestName);
-            GameController.Instance.QuestManager.SpawnQuests();
+            DiaSpawnQuests();
             _isQuestcreateing = false;
 
         }

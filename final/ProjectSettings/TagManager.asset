@@ -8,6 +8,8 @@ TagManager:
   - enemy
   - air wall
   - ground
+  - grey
+  - blue
   layers:
   - Default
   - TransparentFX

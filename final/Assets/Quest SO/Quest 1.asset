@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _QuestName: kill grey
   _targetName: grey
-  _targetAmount: 10
+  _targetAmount: 2
   _currentAmount: 0

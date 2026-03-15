@@ -51,7 +51,7 @@ public class QuestUI : MonoBehaviour
         if (_currentNum.text == _targetNum.text)
         {
             // Debug.Log("same");
-            //QuestDestroy?.Invoke(this);
+            QuestDestroy?.Invoke(this);
 
             Destroy(gameObject, 0.1f);
         }
