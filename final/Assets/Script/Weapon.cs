@@ -82,6 +82,7 @@ public class Weapon : MonoBehaviour
             {
                 hit.transform.gameObject.GetComponent<Enemy>()?.TakeEnemyDamage();
                 GameController.Instance.UI.激活受击反馈UI();
+                
             }
             _currentBullets--;
             _ShootAudio.Play();

@@ -19,14 +19,16 @@ public class UI : MonoBehaviour
     private void Update()
     {
         _ClipNumText.text = "Mag NUM: " + GameController.Instance.Weapon._clipNUM.ToString();
+        
     }
 
     public void 激活受击反馈UI()
     { 
-        if (_HitHolder.activeSelf)
-        {
+        _HitHolder.SetActive(true);
+        //if (_HitHolder.activeSelf)
+        //{
             StartCoroutine(HitHolderDisappear());
-        }
+       // }
     }
 
     IEnumerator HitHolderDisappear()
