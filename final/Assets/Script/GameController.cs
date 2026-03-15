@@ -23,11 +23,11 @@ public class GameController : MonoBehaviour
     public CameraController CameraController;
     public Enemy Enemy;
     public QuestManager QuestManager;
-    //public DialogueLogic DialogueLogic;
     public DialogueUI DialogueUI;
     public QuestUI QuestUI;
-    //public DialogueScript DialogueScript;
+    public pickup pickup;
     [SerializeField] private GameObject _gamestop;
+
 
     public bool IsPlaying { get; private set; } = true;
     private int score = 0;

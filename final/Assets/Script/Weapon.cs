@@ -28,36 +28,32 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _reloadingCDTextObject;
     [SerializeField] private float _reloadTime = 2f;
     [SerializeField] private float _reloadTimer;
-
+    [SerializeField] private GameObject _Gun;
     public delegate void hitReaction();
-
     public float _damageNum = 1.0f;
     [SerializeField]private float _ReloadingCD;
-
-
-
-
-
+    private enum WeaponsState
+    {
+        None,
+        pickup
+    }
+    private WeaponsState _currentState;
     private float _timer;
-
-
     private void Start()
     {
         _currentBullets = _maxBullets;
         _targetName = "enemy";
         _reloadTimer = _reloadTime;
         _reloadingCDTextObject.SetActive(false);
+        _currentState = WeaponsState.None;
     }
 
     
     void Update()
     {
-       _GunAnimator.SetBool("Isidieing",true);
-        FireWeapon();
-        Reload();
-        _Magnumber.text = _currentBullets.ToString();
-        _TotalMagNumber.text = _maxBullets.ToString();
-        CDcalculate();
+      UpdaeState();
+        Statedoing();
+
     }
 
     private void FireWeapon()
@@ -67,7 +63,6 @@ public class Weapon : MonoBehaviour
         {
             if (_currentBullets <= 0)
             {
-               // Debug.Log("Out of bullets!");
                 return;
             }
             Instantiate(_BulletsPrefab, _Bulletshootpoint.transform.position,_Bulletshootpoint.transform.rotation * Quaternion.Euler(0, 180, 0));
@@ -79,7 +74,6 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(_shootRaycastOrigin, shootDirection, out hit, _range, LayerMask.GetMask("Enemy")))
             {
-               // Debug.Log("Hit: " + hit.transform.gameObject.tag);
                 hit.transform.gameObject.GetComponent<Enemy>()?.TakeEnemyDamage();
                 GameController.Instance.UI.激活受击反馈UI();
             }
@@ -91,22 +85,15 @@ public class Weapon : MonoBehaviour
     }
     private void Reload()
     {
-        _reloadTimer += Time.deltaTime;
-         
-        
+        _reloadTimer += Time.deltaTime;  
         if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
         {
             _currentBullets = _maxBullets;
-           // Debug.Log("Reloaded!");
-           // _GunAnimator.SetTrigger("isReloading");
                 ForceplayAnim("pistol1_hands_Reload_pistol1");
             _reloadTimer = 0;
                 _ReloadAudio.Play();
             _ReloadingCD = 0;
             _reloadingCDTextObject.SetActive(true);
-
-
-
         }
     }
     private void ForceplayAnim(string AnimName)
@@ -126,11 +113,31 @@ public class Weapon : MonoBehaviour
         if (_ReloadingCD >= _reloadTime)
         {
             _reloadingCDTextObject.SetActive(false);
+        } 
+    }
+    private void UpdaeState()
+    {
+        if (GameController.Instance.pickup._isPickup == true)
+        {
+            _currentState = WeaponsState.pickup;
+        }
+    }
+    private void Statedoing()
+    {
+        if (_currentState == WeaponsState.None)
+        {
+            _Gun.SetActive(false);
+        }
+        if(_currentState== WeaponsState.pickup)
+        {
+            _Gun.SetActive(true);
+            _GunAnimator.SetBool("Isidieing", true);
+            FireWeapon();
+            Reload();
+            _Magnumber.text = _currentBullets.ToString();
+            _TotalMagNumber.text = _maxBullets.ToString();
+            CDcalculate();
         }
 
-        
     }
-    
-
-
 } 

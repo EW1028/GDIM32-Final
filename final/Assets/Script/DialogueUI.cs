@@ -26,10 +26,12 @@ public class DialogueUI : MonoBehaviour
         _PlayerOption1.text = Options[0];
         if (Options.Length >= 2)
         {
+            _PlayerOption2.transform.parent.gameObject.SetActive(true);
             _PlayerOption2.text = Options[1];
         }
         else
         {
+            _PlayerOption2.transform.parent.gameObject.SetActive(false);
             _PlayerOption2.text = "";
         }
         
