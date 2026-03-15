@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private RectTransform _questUI;
     [SerializeField] private GameObject _alarmUI;
     [SerializeField] private TMP_Text _finishQuest;
-    private float __finishQuestNUM;
+    public float __finishQuestNUM;
 
     private float space = 10f;
     //private RectTransform _lastSpawnQuest;

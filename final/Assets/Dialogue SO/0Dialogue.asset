@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9a6e669a3251540bcc7561eb1d0f65, type: 3}
+  m_Name: 0Dialogue
+  m_EditorClassIdentifier: 
+  _lines:
+  - Great Job !!!
+  - you complete my Quest
+  - do you want to get more Quests
+  _playerReplyOptions:
+  - yes please
+  - No thanks
+  _npcReplies:
+  - {fileID: 11400000, guid: 3a78ba9567935064198778e9d8c5a85d, type: 2}
+  - {fileID: 11400000, guid: 8b2de26608121564db208a0f119cb87a, type: 2}
+  _Quest: {fileID: 0}
+  _isQuestStart: 0

@@ -10,6 +10,7 @@ TagManager:
   - ground
   - grey
   - blue
+  - Gun
   layers:
   - Default
   - TransparentFX

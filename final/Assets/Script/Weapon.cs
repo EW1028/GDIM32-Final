@@ -31,6 +31,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _Gun;
     public delegate void hitReaction();
     public float _damageNum = 1.0f;
+    private bool _ispickUp = false;
     [SerializeField]private float _ReloadingCD;
     private enum WeaponsState
     {
@@ -46,13 +47,16 @@ public class Weapon : MonoBehaviour
         _reloadTimer = _reloadTime;
         _reloadingCDTextObject.SetActive(false);
         _currentState = WeaponsState.None;
+        pickup.OnPickup += Gunpickup;
+        pickup.OnPickup += Magpickup;
+
     }
 
     
     void Update()
     {
       UpdaeState();
-        Statedoing();
+       Statedoing();
 
     }
 
@@ -117,7 +121,7 @@ public class Weapon : MonoBehaviour
     }
     private void UpdaeState()
     {
-        if (GameController.Instance.pickup._isPickup == true)
+        if (_ispickUp == true)
         {
             _currentState = WeaponsState.pickup;
         }
@@ -138,6 +142,19 @@ public class Weapon : MonoBehaviour
             _TotalMagNumber.text = _maxBullets.ToString();
             CDcalculate();
         }
+
+    }
+    private void Gunpickup(pickup pickupItem)
+    {
+        if(pickupItem.tag == "Gun")
+        {
+            Debug.Log("pickupGun");
+            _ispickUp = true;
+        }
+    }
+
+    private void Magpickup(pickup pickupItem)
+    {
 
     }
 } 

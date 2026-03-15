@@ -13,6 +13,7 @@ public class DialogueLogic : MonoBehaviour
     //[SerializeField] private QuestTarget _questinfo;
     [SerializeField] private GameObject _questBoard;
     [SerializeField] private RectTransform _questUI;
+    [SerializeField] private DialogueScript _NewDialogueStart;
     private DialogueScript _currentDialogue;
     private int _CurrentLine = 0;
     private string _questtext;
@@ -43,15 +44,17 @@ void Update()
                 StartDialogue();
                 //Debug.Log("Start Dialogue");
             }
-            //else if (!_isDialogueActive)
-            //{
-                
-            //}
+            else if (_isDialogueActive == false)
+            {
+                WhenFinishQUests();
+            }
         }
         else
         {
             DialogueEnd();
+            WhenFinishQUests();
         }
+        
     }
 
     private void StartDialogue()
@@ -111,4 +114,16 @@ void Update()
         GameController.Instance.QuestManager.SpawnQuests();
         _isQuestcreateing = false;
     }
-}
+    private void WhenFinishQUests()
+    {
+        if (GameController.Instance.QuestManager.__finishQuestNUM > 0)
+        {
+            _currentDialogue = _NewDialogueStart;
+        }
+        else if(GameController.Instance.QuestManager.__finishQuestNUM <= 0)
+        {
+            _currentDialogue = _StartDialogue;
+        }
+
+        }
+    }

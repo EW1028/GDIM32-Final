@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ public class pickup : MonoBehaviour
 {
     private float _startdistance = 3.0f;
     [SerializeField] GameObject _InfoUI;
-    [SerializeField] GameObject _gun;
-    public bool _isPickup = false;
+    //[SerializeField] GameObject _object;
+    //private bool _isPickup = false;
+    public static Action<pickup> OnPickup;
+
 
 
     private void Update()
@@ -17,9 +20,11 @@ public class pickup : MonoBehaviour
             _InfoUI.SetActive(true);
             if (Input.GetKeyUp(KeyCode.F))
             {
-                _isPickup=true;
-                //_InfoUI.SetActive(false);
-                _gun.SetActive(false);
+                OnPickup?.Invoke(this);
+                //_isPickup=true;
+                _InfoUI.SetActive(false);
+                this.gameObject.SetActive(false);
+                
             }
         }
         else
