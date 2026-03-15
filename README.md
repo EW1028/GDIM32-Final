@@ -47,4 +47,5 @@ Put your individual final Devlog here.
 [Shooting & reloading SFX](https://assetstore.unity.com/packages/templates/systems/multiplayer-fps-template-259143)
 [map objects](https://assetstore.unity.com/packages/3d/environments/industrial/rpg-fps-game-assets-for-pc-mobile-industrial-set-v2-0-86679)
 [signal 3D model of pistal](https://ng1994.itch.io/cyberpunk-gun-model-futuristic-weapon-for-3d-projects)
+[NPC 3D Model](https://assetstore.unity.com/packages/3d/characters/humanoids/npc-character-proto-series-132051)
 
