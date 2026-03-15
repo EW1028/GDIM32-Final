@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _HP = 3;
     private Weapon _weapon;
     [SerializeField] private TMP_Text _HPUI;
+    [SerializeField] private string _enemyName;
     private float _curentHP;
   
     public static Action<Enemy> enemyDeath;
@@ -16,7 +17,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _weapon = GameController.Instance.Weapon;
-      
+        this.gameObject.tag = _enemyName;
+
         _curentHP = _HP;
     }
 
@@ -38,10 +40,10 @@ public class Enemy : MonoBehaviour
     {
         if (_curentHP <= 0)
         {
-            _curentHP = 0;
+           
             enemyDeath?.Invoke(this);
             Destroy(gameObject,0.1f);
-            //_curentHP = _HP;
+            _curentHP = _HP;
 
         }
     }
