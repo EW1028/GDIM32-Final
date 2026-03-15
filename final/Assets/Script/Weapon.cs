@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
     public float _damageNum = 1.0f;
     private bool _ispickUp = false;
     [SerializeField]private float _ReloadingCD;
+    public int _clipNUM = 2;
     private enum WeaponsState
     {
         None,
@@ -56,7 +57,8 @@ public class Weapon : MonoBehaviour
     void Update()
     {
       UpdaeState();
-       Statedoing();
+      Statedoing();
+
 
     }
 
@@ -89,16 +91,23 @@ public class Weapon : MonoBehaviour
     }
     private void Reload()
     {
-        _reloadTimer += Time.deltaTime;  
-        if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
+        _reloadTimer += Time.deltaTime;
+        if(_clipNUM > 0)
         {
-            _currentBullets = _maxBullets;
+               if (Input.GetKey(KeyCode.R)&&_reloadTimer>=_reloadTime)
+            {
+                _currentBullets = _maxBullets;
                 ForceplayAnim("pistol1_hands_Reload_pistol1");
-            _reloadTimer = 0;
+                _reloadTimer = 0;
                 _ReloadAudio.Play();
-            _ReloadingCD = 0;
-            _reloadingCDTextObject.SetActive(true);
+                _ReloadingCD = 0;
+                _reloadingCDTextObject.SetActive(true);
+                _clipNUM -= 1;
+            }
+
         }
+          
+        
     }
     private void ForceplayAnim(string AnimName)
     {
@@ -148,13 +157,16 @@ public class Weapon : MonoBehaviour
     {
         if(pickupItem.tag == "Gun")
         {
-            Debug.Log("pickupGun");
+            //Debug.Log("pickupGun");
             _ispickUp = true;
         }
     }
 
     private void Magpickup(pickup pickupItem)
     {
-
+        if( pickupItem.tag == "Mag")
+        {
+            _clipNUM += 1;
+        }
     }
 } 
