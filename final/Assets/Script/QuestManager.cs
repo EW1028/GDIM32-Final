@@ -9,6 +9,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject _questBoard;
     [SerializeField] private RectTransform _questUI;
     [SerializeField] private GameObject _alarmUI;
+    [SerializeField] private TMP_Text _finishQuest;
+    private float __finishQuestNUM;
 
     private float space = 10f;
     //private RectTransform _lastSpawnQuest;
@@ -17,6 +19,11 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         QuestUI.QuestDestroy += OnQuestDestroy;
+        __finishQuestNUM = 0;
+    }
+    private void Update()
+    {
+        _finishQuest.text = "Your finish Quest:" + __finishQuestNUM.ToString();
     }
 
     public void SpawnQuests()
@@ -62,7 +69,7 @@ public class QuestManager : MonoBehaviour
     {
         RectTransform DestrouRt = questUI.GetComponent<RectTransform>();
         _activeQuests.Remove(DestrouRt);
-
+        __finishQuestNUM += 1;
         float currentY = 0;
         foreach (RectTransform questRt in _activeQuests)
         {

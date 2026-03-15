@@ -16,6 +16,7 @@ public class QuestUI : MonoBehaviour
     //[SerializeField] private Quest_SO QuestInfo;
     //[SerializeField] private QuestTarget QuestTarget;
 
+
     public void CreateQuest( int targetNum, string targetName, string QuestName)
     {
         _questName.text = QuestName;
@@ -53,7 +54,7 @@ public class QuestUI : MonoBehaviour
             // Debug.Log("same");
             QuestDestroy?.Invoke(this);
 
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject);
         }
     }
 }
