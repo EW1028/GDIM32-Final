@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 100Dialogue
   m_EditorClassIdentifier: 
   _lines:
+  - ok
   - here is your quest
   _playerReplyOptions:
   - I see it
-  - I see it
   _npcReplies:
-  - {fileID: 11400000, guid: 7b05cab9f06c4c44a9103fe3030a5079, type: 2}
   - {fileID: 11400000, guid: 7b05cab9f06c4c44a9103fe3030a5079, type: 2}
   _Quest: {fileID: 11400000, guid: a9f1169794119b0418be15cd4e800cf5, type: 2}
   _isQuestStart: 0

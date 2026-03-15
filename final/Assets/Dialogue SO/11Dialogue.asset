@@ -13,13 +13,9 @@ MonoBehaviour:
   m_Name: 11Dialogue
   m_EditorClassIdentifier: 
   _lines:
-  - you have to help me
-  - I will give you another Quest
-  _playerReplyOptions:
-  - ok
-  - I accept
-  _npcReplies:
-  - {fileID: 11400000, guid: 290e4126b940beb459fc280d76b6a83d, type: 2}
-  - {fileID: 11400000, guid: 290e4126b940beb459fc280d76b6a83d, type: 2}
+  - that is fine
+  - byebye
+  _playerReplyOptions: []
+  _npcReplies: []
   _Quest: {fileID: 0}
   _isQuestStart: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 101Dialogue
   m_EditorClassIdentifier: 
   _lines:
+  - Ok
   - here is another quest
   _playerReplyOptions:
   - I can see it

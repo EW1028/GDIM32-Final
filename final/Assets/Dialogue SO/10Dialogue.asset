@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lines:
   - I need you to kill sth.
+  - u can pick up the gun on the floor
+  - who u want to kill
   _playerReplyOptions:
-  - ok
-  - that is great
+  - grey
+  - blue
   _npcReplies:
   - {fileID: 11400000, guid: 68b180bc8048339498c572f0a809392b, type: 2}
-  - {fileID: 11400000, guid: 68b180bc8048339498c572f0a809392b, type: 2}
+  - {fileID: 11400000, guid: 290e4126b940beb459fc280d76b6a83d, type: 2}
   _Quest: {fileID: 0}
   _isQuestStart: 0
