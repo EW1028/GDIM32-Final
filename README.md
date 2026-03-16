@@ -100,7 +100,7 @@ Put your individual final Devlog here.
 ### Team Member Name 2
 Put your individual final Devlog here.
 ### Team Member Eric Wei
-Put your individual final Devlog here.
+At the final stage of the project, I contributed to several important parts of the game development in Unity. I worked on the lighting setup and environment design in the scene to improve the overall visual atmosphere of the game. By adjusting Unity's lighting settings and background objects in the scene, I helped make the environment feel more polished and visually cohesive for the player. I also implemented sound effects in the game using Unity's AudioSource and AudioClip components. These audio events are connected to gameplay interactions so that sounds are triggered when players perform certain actions in the game. This helps provide feedback to the player and improves the overall immersion of the gameplay experience. In addition, I helped optimize the scene by adjusting environment objects and fixing technical issues that appeared during development. I also debugged problems to ensure that lighting, audio systems, and scene elements function correctly together inside the Unity scene. Debugging and testing were important parts of my contribution because they helped prevent technical problems from affecting other parts of the project. Throughout the development process, I maintained active communication with my teammates. I regularly shared progress updates, discussed implementation decisions, and collaborated with the team to solve problems. Overall, my work helped improve the game's visual presentation, audio feedback, performance, and overall player experience.
 
 
 
