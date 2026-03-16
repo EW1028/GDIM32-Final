@@ -31,57 +31,130 @@ In the Final Check-In assignment, we split the taks for each one, I mainly foucu
 ### Group Devlog
 
 #### 1. Singleton
-We set up GameController as a Singleton. We ensure that only one instance of GameController.Instance exists using the following code in the Awake() method:
+We set up `GameController` as a **Singleton**. We ensure that only one instance of `GameController.Instance` exists using the following code in `Awake()`method in the `GameController` script:
 
 ```csharp
-private void Awake()
-{
     if (Instance != null && Instance != this)
     {
         Destroy(gameObject);
         return;
     }
     Instance = this;
+```
+
+In this case, I can put all the scripts that I need to use into the `GameController`, When I need to use Varible form those script in other script, I can use it by useing the Singleton. In this way, I don't have to redefine and assign all script I need to use in every single script. Therefore, my script can become easy to read.
+
+for example:  
+
+In the `GameController`
+
+```csharp
+public Weapon Weapon;
+```
+In the `DialogueLogic`
+
+```csharp
+GameController.Instance.Weapon._clipNUM
+```
+
+
+
+
+
+#### 2. MVC
+In our game, we use **events** in three different scripts: `QuestUI`, `Enemy`, and `Pickup`.
+
+##### 1 QuestUI Script  
+
+When I generate a new prefab which have `QuestUI` script and this prefab destroyed after completing a quest, it sends an event that includes information of this GameObject. This allows me to retrieve the `RectTransform` of this GameObject in the `QuestManager` script and create new list all existing quests.  
+
+In the `QuestUI`
+
+```csharp
+QuestDestroy?.Invoke(this);
+```
+
+In the `QuestManager`
+
+```csharp
+
+QuestUI.QuestDestroy += OnQuestDestroy;
+public void OnQuestDestroy(QuestUI questUI)
+{
+    RectTransform DestrouRt = questUI.GetComponent<RectTransform>();
+    _activeQuests.Remove(DestrouRt);
+    __finishQuestNUM += 1;
+    float currentY = 0;
+    foreach (RectTransform questRt in _activeQuests)
+    {
+        questRt.anchoredPosition = new Vector2(0, currentY);
+        currentY -= questRt.rect.height + space;
+    }
+
 }
 ```
 
-Additionally, I have placed all the scripts I need to access inside the `GameController`, for example:  
-`public Weapon Weapon;`
+##### 2 Pickup Script
+When the player presses the F key to pick up an item, it sends an event containing the information of the GameObject which player pick up. This allow me to retrieve tag name of this GameObject in the `Weapon` script. And distinguish which GameObject player pick up.
 
-When I need to access variables from this script in other scripts, I can use:  
-`GameController.Instance.Weapon._clipNUM`  
 
-This way, I don’t have to redefine and assign these script variables in every single script.
+In the `pickup`
 
----
+```csharp
+OnPickup?.Invoke(this);
+```  
+In the `Weapon`
 
-## 2. MVC
-In our game, we use **events** in three different scripts: **QuestUI**, **Enemy**, and **Pickup**.
+```csharp
+pickup.OnPickup += Gunpickup; 
+pickup.OnPickup += Magpickup;
+  private void Gunpickup(pickup pickupItem)
+  {
+      if(pickupItem.tag == "Gun")
+      {
+          //Debug.Log("pickupGun");
+          _ispickUp = true;
+      }
+  }
 
-- **QuestUI Script**  
-When a generated QuestUI destroys itself after completing a quest, it sends an event that includes all variables of the destroyed GameObject. This allows me to retrieve the `RectTransform` of the destroyed GameObject in the `QuestManager` script and **re‑sort all existing quests**.  
-`QuestDestroy?.Invoke(this);`  
-`QuestUI.QuestDestroy += OnQuestDestroy;`
+  private void Magpickup(pickup pickupItem)
+  {
+      if( pickupItem.tag == "Mag")
+      {
+          _clipNUM += 1;
+      }
+  }
+```
 
-- **Pickup Script**  
-When the player presses the **F key** to pick up an item, it sends an event containing the variables of the picked‑up item:  
-`OnPickup?.Invoke(this);`  
 
-This allows me to check in the `Weapon` script whether the picked item is a **Gun** or a **Magazine** by using **different tags** to distinguish them.  
-`pickup.OnPickup += Gunpickup;`  
-`pickup.OnPickup += Magpickup;`
+##### 3 Enemy Script
+When an enemy is destroyed because its HP equal or lower than 0, this GameObject will send an event with the infomation of this GameObeject. This all me to retrieve the tag name of this GameObject in the  `QuestUI` script to verify if the destroyed enemy is the target enemy.  
 
-- **Enemy Script**  
-When an enemy is destroyed because its HP drops to 0 or below, I send an event with the GameObject’s information:  
-`enemyDeath?.Invoke(this);`  
+In the `Enemy`
 
-I can then read the tag of the destroyed GameObject in the `QuestUI` script to verify if the destroyed enemy is the **target enemy**.  
-`Enemy.enemyDeath += OnEnemyDeath;`
+```csharp
+enemyDeath?.Invoke(this); 
+```  
 
----
+In the `QuestUI`
 
-## 3. FSM (Finite State Machine)
-In the **Weapon** script, I use an **enum** to define and separate the weapon states:
+```csharp
+Enemy.enemyDeath += OnEnemyDeath;
+
+void OnEnemyDeath(Enemy enemy)
+{
+    Debug.Log(enemy.tag);
+    if(enemy.tag == _targetName)
+    {
+        _currentNumber += 1;
+        _currentNum.text = _currentNumber.ToString(); 
+    }
+}
+```
+
+
+#### 3. FSM (Finite State Machine)
+In the `Weapon` script, I use an `enum` to define and separate the weapon states in two different state. When the player has not picked up the gun, the `weaponState` is set to `None`, and the gun GameObject is set to `SetActive(false)`. When the player picks up the gun, the `weaponState` becomes `Pickup`, allowing the player to execute methods such as `FireWeapon()`, `Reload()`, and others.
 
 ```csharp
 private enum WeaponsState
@@ -91,8 +164,6 @@ private enum WeaponsState
 }
 ```
 
-- When the player **has not picked up the gun**, the `weaponState` is set to **None**, and the gun GameObject is set to `SetActive(false)`.
-- When the player **picks up the gun**, the `weaponState` becomes **Pickup**, allowing the player to execute methods such as `FireWeapon()`, `Reload()`, and others.
 
 
 ### Team Member Name 1
