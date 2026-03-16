@@ -44,47 +44,47 @@ public class GameController : MonoBehaviour
         Instance = this;
     }
 
-    public void Shoot()
-    {
-        if(!IsPlaying)
-            return;
-        OnShoot?.Invoke();
-    }
+    //public void Shoot()
+   // {
+        //if(!IsPlaying)
+          //  return;
+      //  OnShoot?.Invoke();
+    //}
 
-    public void TalkStart()
-    {
-        IsPlaying = false;
-        OnTalkStart?.Invoke();
-    }
+   // public void TalkStart()
+   // {
+        //IsPlaying = false;
+       // OnTalkStart?.Invoke();
+   // }
 
-    public void TalkEnd()
-    {
-        IsPlaying = true;
-        OnTalkEnd?.Invoke();
-    }
+   // public void TalkEnd()
+  //  {
+       // IsPlaying = true;
+     //   OnTalkEnd?.Invoke();
+    //}
 
-    public void EnemyHit(Enemy enemy)
-    {
-        if (!IsPlaying)
-            return;
-        OnEnemyHit?.Invoke(enemy);
-    }
-    public void EnemyDead(Enemy enemy)
-    {
-        if (!IsPlaying)
-            return;
-        OnEnemyDead?.Invoke(enemy);
-        AddScore(1);
-    }
+   // public void EnemyHit(Enemy enemy)
+  //  {
+    //    if (!IsPlaying)
+      //     return;
+   //     OnEnemyHit?.Invoke(enemy);
+  //  }
+ //   public void EnemyDead(Enemy enemy)
+    //{
+     //   if (!IsPlaying)
+      //      return;
+    //    OnEnemyDead?.Invoke(enemy);
+    //    AddScore(1);
+  //  }
 
-    public void AddScore(int amount)
+  //  public void AddScore(int amount)
+  //  {
+    //    score += amount;
+   //     OnScoreChanged?.Invoke(score);
+  //  }
+   public void PauseGame()
     {
-        score += amount;
-        OnScoreChanged?.Invoke(score);
-    }
-    public void PauseGame()
-    {
-        _gamestop.SetActive(true);
+       _gamestop.SetActive(true);
        Time.timeScale = 0f;
         _Ispause = true;
     }
