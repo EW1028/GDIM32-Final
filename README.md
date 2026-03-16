@@ -166,8 +166,53 @@ private enum WeaponsState
 
 
 
-### Team Member Name 1
-Put your individual final Devlog here.
+### Team Member Ruichen Ma
+
+After checked in submit, I am responsible for developing the NPC interaction system code in our game project, including the Quest System and Dialogue System. First, I created two `ScriptableObjects` for these two systems, which made our game scale more flexible and well. In the `Quest_SO` script, I defined variables such as quest name, target name, target number, and current number. This allowed us to add a new quest simply by creating a new ScriptableObject instance with different information.
+
+The `DialogueScript` ScriptableObject is more complex, which include some list of string and SO. In this case, I can flexibly and easy to edit the NPC dialogue, Player response and NPC replies.
+
+```csharp
+public string[] _lines;
+public string[] _playerReplyOptions;
+public DialogueScript[] _npcReplies;
+public Quest_SO _Quest;
+public bool _isQuestStart;
+```
+
+In the `DialogueLogic` and `DialogueUI` scripts, I implemented logic similar to the content from the W9 pre-learning DEMO script. In `DialogueLogic`, I added one more if statement in the `StartDialogue()` method, which enable the game can automatically provide the quest which I want to provide during dialogue.
+
+```csharp
+if (_currentDialogue._Quest != null && _isQuestcreateing == true)
+{
+    GameController.Instance.QuestUI.CreateQuest(_currentDialogue._Quest._targetAmount, _currentDialogue._Quest._targetName, _currentDialogue._Quest._QuestName);
+    DiaSpawnQuests();
+    _isQuestcreateing = false;
+}
+```
+
+In the `QuestManager` script, I used a List to store the Canvas positions of all active quests. This list tracks the position of each quest UI element. When a quest is completed and destroy it self, the list automatically reorders the remaining quest position.
+
+```csharp
+private List<RectTransform> _activeQuests = new List<RectTransform>();
+
+public void OnQuestDestroy(QuestUI questUI)
+{
+    RectTransform DestroyRt = questUI.GetComponent<RectTransform>();
+    _activeQuests.Remove(DestroyRt);
+    __finishQuestNUM += 1;
+    float currentY = 0;
+    foreach (RectTransform questRt in _activeQuests)
+    {
+        questRt.anchoredPosition = new Vector2(0, currentY);
+        currentY -= questRt.rect.height + space;
+    }
+}
+```
+
+
+
+
 ### Team Member Name 2
 Put your individual final Devlog here.
 ### Team Member Eric Wei
@@ -179,9 +224,15 @@ At the final stage of the project, I contributed to several important parts of t
 
 
 [3D model of hand and gun & animation & bullet 3D model](https://assetstore.unity.com/packages/3d/props/weapons/glassofcoins-low-poly-fps-pack-196540)
+
 [BGM morning](https://www.youtube.com/watch?v=KIh8PEwFCtg)
+
 [Shooting & reloading SFX](https://assetstore.unity.com/packages/templates/systems/multiplayer-fps-template-259143)
+
 [map objects](https://assetstore.unity.com/packages/3d/environments/industrial/rpg-fps-game-assets-for-pc-mobile-industrial-set-v2-0-86679)
+
 [signal 3D model of pistal](https://ng1994.itch.io/cyberpunk-gun-model-futuristic-weapon-for-3d-projects)
+
 [NPC 3D Model](https://assetstore.unity.com/packages/3d/characters/humanoids/npc-character-proto-series-132051)
+
 

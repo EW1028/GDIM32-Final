@@ -8,14 +8,14 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    public event Action OnShoot;
-    public event Action OnTalkStart;
-    public event Action OnTalkEnd;
+  //  public event Action OnShoot;
+   // public event Action OnTalkStart;
+   // public event Action OnTalkEnd;
 
-    public event Action<Enemy> OnEnemyHit;
-    public event Action<Enemy> OnEnemyDead;
+    //public event Action<Enemy> OnEnemyHit;
+    //public event Action<Enemy> OnEnemyDead;
 
-    public event Action<int> OnScoreChanged;
+   // public event Action<int> OnScoreChanged;
 
     public Weapon Weapon;
     public UI UI;
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 
 
     public bool IsPlaying { get; private set; } = true;
-    private int score = 0;
+    //private int score = 0;
 
     private bool _Ispause = false;
 
